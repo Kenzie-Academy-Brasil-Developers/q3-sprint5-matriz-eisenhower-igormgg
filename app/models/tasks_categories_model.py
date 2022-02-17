@@ -1,0 +1,6 @@
+from app.configs.database import db
+
+tasks_categories = db.Table('tasks_categories',
+    db.Column('id', db.Integer, primary_key=True), 
+    db.Column('task_id', db.Integer, db.ForeignKey('tasks.id')), 
+    db.Column('categories_id', db.Integer, db.ForeignKey('categories.id')))
