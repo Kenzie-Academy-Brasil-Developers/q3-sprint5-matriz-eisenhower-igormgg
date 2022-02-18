@@ -6,10 +6,11 @@ from app.models.categories_model import Categories_Model
 from app.models.eisenhowers_model import Eisenhowers_Model
 from app.models.exceptions_model import Eisenhower_Error
 from app.models.tasks_model import Tasks_Model
-from app.services.helpers import data_categories_to_patch, data_to_patch, get_eisenhower_num
+from app.services.helpers import data_categories_to_patch, data_to_patch, get_eisenhower_num, prepopulate_eisenhowers
 
 
 def create_task():
+    prepopulate_eisenhowers()
 
     try:
         data = request.get_json()

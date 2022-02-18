@@ -1,5 +1,6 @@
 from flask import current_app
 from app.models.categories_model import Categories_Model
+from app.models.eisenhowers_model import Eisenhowers_Model
 
 
 def get_eisenhower_num(importance, urgency):
@@ -44,3 +45,17 @@ def data_categories_to_patch(data):
                 data['categories'].append(category_query)
     
     return data
+
+def prepopulate_eisenhowers():
+    if not Eisenhowers_Model.query.first():                
+
+        eisenhower1 = Eisenhowers_Model(**{"type": "Do It First"})
+        eisenhower2 = Eisenhowers_Model(**{"type": "Delegate It"})
+        eisenhower3 = Eisenhowers_Model(**{"type": "Schedule It"})
+        eisenhower4 = Eisenhowers_Model(**{"type": "Delete It"})
+        
+        current_app.db.session.add(eisenhower1)
+        current_app.db.session.add(eisenhower2)
+        current_app.db.session.add(eisenhower3)
+        current_app.db.session.add(eisenhower4)
+        current_app.db.session.commit()
